@@ -1,12 +1,16 @@
 import requests
 
 
+token = 'secret'
+
 def get_working_list():
-    requests('https://dvmn.org/api/user_reviews/', header)
+    headers = {
+        'Authorization': f'Token {token}'
+    }
+    response = requests.get('https://dvmn.org/api/user_reviews/', headers=headers)
+    response.raise_for_status()
+    return response.json()
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(get_working_list())
